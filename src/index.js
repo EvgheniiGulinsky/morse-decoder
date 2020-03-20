@@ -38,7 +38,15 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-    // write your solution here
+    var wordArray = expr.match(/.{10}/g).map(element =>{
+        if (element.includes('*')) {
+           return " ";
+        }
+        else{
+           return MORSE_TABLE[element.replace(/^0+/, '').replace(/10+/g,'.').replace(/11{1}/g,'-')];
+        } 
+    })
+    return  wordArray.join('')
 }
 
 module.exports = {
